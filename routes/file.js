@@ -71,19 +71,27 @@ const FileDelete = (url) => new Promise((resolve, reject) => {
 router.delete('/delete', isTokenTimeout);
 router.delete('/delete', isAdmin);
 router.delete('/delete', upload.single('imageFile'), function (req, res,) {
-  let imageUrl = req.body.imageUrl
-  const len = imageUrl.length
-  if (imageUrl.substr(0, 1) === "/") {
-    imageUrl = imageUrl.substring(1, len);
-  }
-  if (imageUrl.substr(0, 4) === "http") {
-    res.status(422).send({ code: 0, msg: '非本后端图片' })
-  }
-  FileDelete(imageUrl).then(() => {
-    res.status(200).send({ code: 1, msg: '删除成功' })
-  }).catch(() => {
-    res.status(422).send({ code: 0, msg: '删除失败' })
+  let { _id } = req.query
+  File.findById(_id).exec((err, newVal) => {
+    if (!err) {
+      let imageUrl = newVal.imageUrl
+      const len = imageUrl.length
+      if (imageUrl.substr(0, 1) === "/") {
+        imageUrl = imageUrl.substring(1, len);
+      }
+      if (imageUrl.substr(0, 4) === "http") {
+        res.status(422).send({ code: 0, msg: '非本后端图片' })
+      }
+      FileDelete(imageUrl).then(() => {
+        res.status(200).send({ code: 1, msg: '删除成功' })
+      }).catch(() => {
+        res.status(422).send({ code: 0, msg: '删除失败' })
+      })
+    } else {
+      res.status(422).send({ code: 0, msg: '删除失败' })
+    }
   })
+
 });
 
 router.get('/download', upload.single('imageFile'), function (req, res,) {

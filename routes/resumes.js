@@ -107,7 +107,7 @@ router.post('/editSkills', async (req, res) => {
 router.delete('/deleteSkills', isTokenTimeout);
 router.delete('/deleteSkills', isAdmin);
 router.delete('/deleteSkills', async (req, res) => {
-  const { _id } = req.body
+  const { _id } = req.query
   Skills.remove({ _id }, (err, doc) => {
     if (!err) {
       if (doc.n === 1) {
@@ -160,7 +160,7 @@ router.post('/editIntroduction', async (req, res) => {
 router.delete('/deleteIntroduction', isTokenTimeout);
 router.delete('/deleteIntroduction', isAdmin);
 router.delete('/deleteIntroduction', async (req, res) => {
-  const { _id } = req.body
+  const { _id } = req.query
   Introduction.remove({ _id }, (err, doc) => {
     if (!err) {
       if (doc.n === 1) {
@@ -213,7 +213,7 @@ router.post('/editExperience', async (req, res) => {
 router.delete('/deleteExperience', isTokenTimeout);
 router.delete('/deleteExperience', isAdmin);
 router.delete('/deleteExperience', async (req, res) => {
-  const { _id } = req.body
+  const { _id } = req.query
   Experience.remove({ _id }, (err, doc) => {
     if (!err) {
       if (doc.n === 1) {
@@ -364,7 +364,7 @@ router.post('/maskRead', async (req, res) => {
 router.delete('/deleteMessage', isTokenTimeout);
 router.delete('/deleteMessage', isAdmin);
 router.delete('/deleteMessage', async (req, res) => {
-  const { _id } = req.body
+  const { _id } = req.query
   Message.remove({ _id }, (err, doc) => {
     if (!err) {
       if (doc.n === 1) {

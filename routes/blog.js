@@ -130,7 +130,7 @@ router.post('/increaseTheBrowse', async (req, res) => {
 router.delete('/deleteBlog', isTokenTimeout);
 router.delete('/deleteBlog', isAdmin);
 router.delete('/deleteBlog', async (req, res) => {
-  const { _id } = req.body
+  const { _id } = req.query
   Blog.find({ _id }, (err, newVal) => {
     if (!err) {
       console.log(newVal[0])

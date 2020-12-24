@@ -90,7 +90,7 @@ router.delete('/deleteAdminUser', isTokenTimeout);
 router.delete('/deleteAdminUser', isAdmin);
 // 删除用户
 router.delete('/deleteAdminUser', async (req, res) => {
-  const { _id } = req.body
+  const { _id } = req.query
   AdminUser.remove({ _id }, adminUserFilter, (err, doc) => {
     if (!err) {
       if (doc.n === 1) {
