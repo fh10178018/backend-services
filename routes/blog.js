@@ -21,7 +21,7 @@ router.post('/editBlogType', isAdmin);
 router.post('/editBlogType', async (req, res) => {
   const { _id, name } = req.body
   if (_id === '') {
-    await BlogType.findOne({ name }, adminUserFilter, (err, type) => {
+    await BlogType.findOne({ name }, (err, type) => {
       if (type) {
         res.status(422).send({ code: 0, msg: req.name + ' 类型已经存在' })
       } else {
