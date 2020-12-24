@@ -5,6 +5,7 @@ const router = express.Router();
 var moment = require('moment');
 const today = new Date(Date.now()).getTime()
 var timepath = moment().format('YYYY-MM-DD');
+const { isTokenTimeout, isAdmin } = require('./users');
 
 const getSortResumesList = () => new Promise((resolve, reject) => {
   Resumes.find((err, res) => {
