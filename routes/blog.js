@@ -131,14 +131,14 @@ router.delete('/deleteBlog', isTokenTimeout);
 router.delete('/deleteBlog', isAdmin);
 router.delete('/deleteBlog', async (req, res) => {
   const { _id } = req.body
-  Blog.findById({ _id }, (err, newVal) => {
+  Blog.findById(_id, (err, newVal) => {
     if (!err) {
       const imageUrl = newVal.imageUrl
       Blog.remove({ _id }, (err, doc) => {
         if (!err) {
           if (doc.n === 1) {
             FileDelete(imageUrl)
-            res.status(201).send({ code: 1, msg: '删除成功' })
+            res.status(201).send({ code: 1, msg: '删除日志成功' })
           } else {
             res.status(422).send({ code: 0, msg: '尚未找到该日志' })
           }
