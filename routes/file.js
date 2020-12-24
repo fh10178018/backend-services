@@ -39,7 +39,6 @@ router.post('/uploadSingleImage', upload.single('imageFile'), function (req, res
   const { description } = req.body
   const { mimetype, size } = req.file
   const url = destination + '/' + filename;
-  console.log({ description, type: mimetype, size, url })
   new File({ description, type: mimetype, size, url }).save((err, newVal) => {
     if (!err) {
       res.status(201).send({ code: 1, msg: '上传成功', data: { imageUrl: url } })
