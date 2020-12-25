@@ -131,10 +131,9 @@ router.delete('/deleteBlog', isTokenTimeout);
 router.delete('/deleteBlog', isAdmin);
 router.delete('/deleteBlog', async (req, res) => {
   const { _id } = req.query
-  Blog.find({ _id }, (err, newVal) => {
+  Blog.findById(_id, (err, newVal) => {
     if (!err) {
-      console.log(newVal[0])
-      const imageUrl = newVal[0].imageUrl
+      const imageUrl = newVal.imageUrl
       Blog.remove({ _id }, (err, doc) => {
         if (!err) {
           if (doc.n === 1) {
