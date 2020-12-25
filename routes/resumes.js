@@ -349,6 +349,16 @@ router.post('/getMessageList', async (req, res) => {
     }).skip((page - 1) * rows).limit(rows * 1)
   }
 });
+router.get('/getMessage', async (req, res) => {
+  const { _id } = req.query;
+  await Message.findById(_id).exec((err, val) => {
+    if (!err) {
+      res.send({ code: 1, msg: '成功详细信息', data: val });
+    } else {
+      res.status(422).send({ code: 0, msg: '查询错误' })
+    }
+  })
+});
 
 router.post('/maskRead', async (req, res) => {
   const { _id } = req.body
