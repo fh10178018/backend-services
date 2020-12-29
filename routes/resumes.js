@@ -11,7 +11,7 @@ const getSortResumesList = () => new Promise((resolve, reject) => {
   Resumes.find((err, res) => {
     if (err) reject()
     else resolve(res)
-  }).sort({ createTime: -1 })
+  }).sort({ createTime: 1 })
 })
 
 const deleteResumes = (_id) => new Promise((resolve, reject) => {
