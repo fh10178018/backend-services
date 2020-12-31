@@ -24,10 +24,22 @@
 
 - **返回字段：**
 
-| 参数  |  必选  |         说明          |
-| :---: | :----: | :-------------------: |
-| token | string | Jwt 生成的 token 字段 |
+|     参数     |  必选  |                         说明                         |
+| :----------: | :----: | :--------------------------------------------------: |
+|    token     | string |                Jwt 生成的 token 字段                 |
+| refreshToken | string | Jwt 生成的 token 字段,用于token过期时，自动更新token |
 
+- **成功字段：**
+```json
+{
+	"code": 1,
+	"msg": "成功生成token",
+	"data": {
+		"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmU0NTYxZDBmYjMyZTEyMWMzYjYyZjUiLCJ1c2VybmFtZSI6IjEyMDY3NTg4MjdAcXEuY29tIiwiaWF0IjoxNjA4Nzk5OTE5LCJleHAiOjE2MDg4ODYzMTl9.VOVQyiNpbaVcYMoLD_IWjrFVEXLeuOyyh1_m0RN1jqg",
+		"refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmU0NTYxZDBmYjMyZTEyMWMzYjYyZjUiLCJ1c2VybmFtZSI6IjEyMDY3NTg4MjdAcXEuY29tIiwiaWF0IjoxNjA4Nzk5OTE5LCJleHAiOjE2MDg4ODk5MTl9.KfQD2QwA79AQF9cbJdm_fa5GcqKv3CqK9xzxPGWzGVE"
+	}
+}
+```
 ---
 
 ### 2、添加或修改管理员接口
@@ -54,7 +66,7 @@
 ---
 
 
-### 2、添加管理员接口
+### 3、密码修改接口
 
 - **URL：** /user/editAdminUserPassword
 - **支持格式：** JSON
@@ -75,7 +87,7 @@
 
 ---
 
-### 3、删除管理员接口
+### 4、删除管理员接口
 
 - **URL：**/user/deleteAdminUser
 - **支持格式：**JSON
