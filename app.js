@@ -2,11 +2,15 @@ const express = require('express');
 const bodyParser = require('body-parser')
 const mongo = require('./config/db');
 const router = require('./routes/router');
-const cors = require('cors')
 const app = express();
 var pathname = __dirname;
-
-app.use(cors())
+// 跨域.  CROS配置 ---------- Start
+const cors = require('cors');
+app.use(cors({
+  origin: ['http://121.4.109.9:3000'], // 所要允许跨域的ip
+  methods: ['GET', 'POST', 'DELETE'],
+  alloweHeaders: ['Content-Type', 'Authorization']
+}));
 app.use(express.static(pathname));
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extend: true }))
