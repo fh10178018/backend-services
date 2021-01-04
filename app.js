@@ -13,7 +13,7 @@ app.use(cors({
 }));
 app.use(express.static(pathname));
 app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({ extend: true }))
+app.use(bodyParser.urlencoded({ extended: true }))
 mongo(app);
 router(app);
 
