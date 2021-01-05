@@ -50,7 +50,9 @@ const AdminUserByIdUpdate = (_id, a) => new Promise((resolve, reject) => {
   })
 })
 
-
+// 添加权限拦截
+router.post('/editAdminUser', isTokenTimeout);
+router.post('/editAdminUser', isAdmin);
 // 创建用户和编辑用户
 router.post('/editAdminUser', async (req, res) => {
   const { username, name, isAdmin, _id } = req.body
