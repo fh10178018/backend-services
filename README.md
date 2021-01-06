@@ -146,9 +146,9 @@
 
 ---
 
-### 5、用于项目初始建立，创建初始简历数据
+### 5、用于项目初始建立，创建初始数据，如果数据已有，不会触发
 
-- **URL：** /resumes/createInitialResumes
+- **URL：** /initialization/setData
 - **支持格式：** JSON
 - **HTTP 请求方式：** GET
 - **是否有管理员权限管理：** 否
@@ -159,13 +159,15 @@
 | :---: | :----: | :--------------------------: |
 | code  | number |         code数字信号         |
 |  msg  | string | 创建newResumes是否成功的消息 |
+| data  | string |      创建成功的历史记录      |
 
 - **查询成功实例：**
 
 ```json
 {
 	"code": 1,
-	"msg": "创建newResumes成功"
+  "msg": "创建成功",
+  "data": [ ... ]
 }
 ```
 ---
