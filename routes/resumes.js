@@ -292,7 +292,6 @@ router.get('/createInitialResumes', async (req, res) => {
       res.status(422).send({ code: 1, msg: '创建失败' })
     }
   })
-
 });
 
 router.delete('/deleteResumes', isTokenTimeout);
