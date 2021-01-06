@@ -257,43 +257,6 @@ router.post('/saveResumes', async (req, res) => {
   });
 })
 
-router.get('/createInitialResumes', isTokenTimeout);
-router.get('/createInitialResumes', isAdmin);
-router.get('/createInitialResumes', async (req, res) => {
-  const newResumes = {
-    birthday: new Date('1998-10-22  17:59:00.0').getTime(),
-    major: '自动化',
-    email: '1206758827@qq.com',
-    tel: '18817555016',
-    address: '暂无',
-    weixinImageUrl: '/upload/images/2020-12-20/weixin.png',
-    qqImageUrl: '/upload/images/2020-12-20/qq.png',
-    csdnUrl: 'https://blog.csdn.net/qq_41411483',
-    saveName: 'newResumes' + timepath
-  }
-  await Resumes.find((err, doc) => {
-    if (!err) {
-      if (doc.length > 5) {
-        deleteResumes().then(() => {
-          new Resumes({ ...newResumes }).save((err) => {
-            if (!err) res.status(201).send({ code: 1, msg: '创建初始简历成功' })
-            else res.status(422).send({ code: 1, msg: '创建失败' })
-          })
-        }).catch(() => {
-          res.status(422).send({ code: 1, msg: '创建失败' })
-        })
-      } else {
-        new Resumes({ ...newResumes }).save((err) => {
-          if (!err) res.status(201).send({ code: 1, msg: '创建初始简历成功' })
-          else res.status(422).send({ code: 1, msg: '创建失败' })
-        })
-      }
-    } else {
-      res.status(422).send({ code: 1, msg: '创建失败' })
-    }
-  })
-});
-
 router.delete('/deleteResumes', isTokenTimeout);
 router.delete('/deleteResumes', isAdmin);
 router.delete('/deleteResumes', async (req, res) => {
